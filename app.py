@@ -1,28 +1,20 @@
-from flask import Flask, request, render_template
+from flask import Flask, request
 from markupsafe import escape
 
 app = Flask(__name__)
 
 
-@app.route("/")
-def index():
-    return render_template("index.html")
-
+# Route POST: dipanggil oleh tombol Kirim
 @app.route("/kirim", methods=["POST"])
 def kirim():
     nama = escape(request.form.get("nama", ""))
     umur = escape(request.form.get("umur", ""))
 
     return f"""
-    <link rel="stylesheet" href="/static/style.css">
-    <div class="card">
-        <h2>Hasil</h2>
-        <div class="hasil">
-            <p>Nama: {nama}</p>
-            <p>Umur: {umur}</p>
-        </div>
-        <a class="kembali" href="/">Kembali</a>
-    </div>
+    <h2>Hasil</h2>
+    <p>Nama: {nama}</p>
+    <p>Umur: {umur}</p>
+    <a href="/static/index.html">Kembali</a>
     """
 
 
