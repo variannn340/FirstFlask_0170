@@ -1,20 +1,12 @@
-from flask import Flask
+from flask import Flask, request, render_template
 from markupsafe import escape
-app=Flask(__name__)
-@app.route('/')
-def hello():
-    return "<p>Hello, World!"
 
-def about():
-    return "About us"
+app = Flask(__name__)
 
-@app.route("/user/<name>")
-def profile(name):
-    return f"Hello, {name}!"
 
-@app.route("/post/<int:post_id>")
-def post(post_id):
-    return f"Post #{post_id}"
+@app.route("/")
+def index():
+    return render_template("index.html")
 
 
 
